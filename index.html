@@ -36,14 +36,17 @@
       border: 0px solid #ffffff;
     }
 
-    th, td {
+    td {
       padding: 8px;
       text-align: center;
     }
 
     th {
+      padding: 8px;
+      text-align: center;
       background-color: #611706;
       color: white;
+      font-size: 14px;
     }
 
     label {
@@ -70,7 +73,7 @@
     }
 
     button {
-      background-color: #611706;
+      background-color: #115f1a;
       color: #fff;
       padding: 10px 15px;
       border: none;
@@ -79,13 +82,22 @@
     }
 
     button:hover {
-      background-color: #361109;
+      background-color: #0a2f0e;
     }
 
-    h2, h3 {
+    h2 {
       margin-top: 5px;    /* Ajuste a margem superior conforme necessário */
       margin-bottom: 5px; /* Ajuste a margem inferior conforme necessário */
       color: #333; /* Mantive a definição de cor que você já tinha no seu código */
+      font-size: 18px;
+    }
+
+    
+    h3 {
+      margin-top: 5px;    /* Ajuste a margem superior conforme necessário */
+      margin-bottom: 5px; /* Ajuste a margem inferior conforme necessário */
+      color: #333; /* Mantive a definição de cor que você já tinha no seu código */
+      font-size: 16px;
     }
 
     /* Adicionando media query para dispositivos com largura menor que 600 pixels */
@@ -175,7 +187,7 @@
   
 
     <label for="equipamentos"><h3>Equipamentos</h3></label>
-    <textarea id="equipamentos" name="equipamentos" rows="4" required></textarea>
+    <textarea id="equipamentos" name="equipamentos" rows="3" required></textarea>
 
     <button type="button" onclick="preencherDadosAleatorios()">Novo Goblin</button>
   </form>
