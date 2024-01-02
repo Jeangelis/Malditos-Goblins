@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malditos Goblins</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://static.wikia.nocookie.net/dragonfantasysaga/images/2/2d/Pzo1107-goblinfirebrigade.jpg/revision/latest?cb=20131221194600') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 40%; /* Ajuste na largura da ficha */
+    }
+
+    h2, h3 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #611706;
+      color: white;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%; /* Todos os campos com a mesma largura */
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    /* Ajuste de largura para o campo Equipamentos */
+    #equipamentos {
+      width: 100%;
+    }
+
+    button {
+      background-color: #611706;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #361109;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <h2>Ficha de Personagem</h2>
+
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Ocupação</th>
+        <th>Descritor</th>
+        <th>Característica</th>
+      </tr>
+      <tr>
+        <td><input type="text" id="nome" name="nome" readonly></td>
+        <td><input type="text" id="ocupacao" name="ocupacao" readonly></td>
+        <td><input type="text" id="descritor" name="descritor" readonly></td>
+        <td><input type="text" id="caracteristica" name="caracteristica" readonly></td>
+      </tr>
+    </table>
+
+    <h3>Atributos</h3>
+
+    <table>
+      <tr>
+        <th>Combate</th>
+        <th>Habilidade</th>
+        <th>Noção</th>
+        <th>Vitalidade</th>
+      </tr>
+      <tr>
+        <td><input type="text" id="combate" name="combate" value="2" readonly></td>
+        <td><input type="text" id="habilidade" name="habilidade" value="2" readonly></td>
+        <td><input type="text" id="nocao" name="nocao" value="2" readonly></td>
+        <td><input type="text" id="vitalidade" name="vitalidade" value="2" readonly></td>
+      </tr>
+    </table>
+
+    <table style="width: 100%;">
+        <tr>
+          <th style="width: 50%;">Nível</th>
+          <th style="width: 50%;">Ferimentos</th>
+        </tr>
+        <tr>
+      <tr>
+        <td><input type="number" id="nivel" name="nivel" min="1" max="4" required></td>
+        <td><input type="number" id="ferimentos" name="ferimentos" min="0" required></td>
+      </tr>
+    </table>
+
+    <label for="equipamentos"><h3>Equipamentos</h3></label>
+    <textarea id="equipamentos" name="equipamentos" rows="4" required></textarea>
+
+    <button type="button" onclick="preencherDadosAleatorios()">Novo Goblin</button>
+  </form>
+
+  <script>
+    // Lista de nomes
+    const nomes = ["Plaft", "Glub", "Crash", "Spray", "Bing", "Plin", "Tim", "Zzzz", "Cringe", "Riso", "Tik", "Ranço", "Sussa", "Sopa", "Slash", "Tok", "Yhaa", "Bibi", "Ovo", "Coff", "Bash", "Vrum", "Boom", "Ban", "Ugh", "Cricri", "Aiaiai", "Bum", "Nhack", "Snif", "Última coisa que comeu", "Inverta seu nome"];
+
+    // Lista de ocupações
+    const ocupacoes = ["Mercenário", "Caçador", "Gatuno", "Líder", "Incendiário", "Bruxo"];
+
+    // Lista de descritores corretos
+    const descritores = ["Covarde", "Atrapalhado", "Tapado", "Fracote", "Medíocre", "Supimpa"];
+
+    // Lista de características corretas
+    const caracteristicas = ["Bomba-relógio", "Cinzento", "Amaldiçoado", "Tom bélico", "Flutulência", "Minicabeça", "Cabeção", "Linguão", "Olho gigante", "Pés gigantes", "Mãos gigantes", "Apêndice extra", "Orelha extra", "Nariz extra", "Olhos extra", "Braço extra", "Cabeça extra", "Poros fedidos", "Pintas", "Listras", "Pompom", "Chifre", "Cicatrizes", "Verdura", "Minion", "Galináceo", "Peixoso", "Felino", "Aracnídeo", "Fosforescente", "Colorido", "Amarelo", "Azul", "Vermelho"];
+
+    // Função para escolher aleatoriamente um nome, uma ocupação, um descritor e uma característica e preencher os campos
+    function preencherDadosAleatorios() {
+      const inputNome = document.getElementById('nome');
+      const inputOcupacao = document.getElementById('ocupacao');
+      const inputDescritor = document.getElementById('descritor');
+      const inputCaracteristica = document.getElementById('caracteristica');
+      const inputCombate = document.getElementById('combate');
+      const inputHabilidade = document.getElementById('habilidade');
+      const inputNocao = document.getElementById('nocao');
+      const inputVitalidade = document.getElementById('vitalidade');
+      const inputNivel = document.getElementById('nivel');
+      const inputFerimentos = document.getElementById('ferimentos');
+
+      const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
+      const ocupacaoAleatoria = ocupacoes[Math.floor(Math.random() * ocupacoes.length)];
+      const descritorAleatorio = descritores[Math.floor(Math.random() * descritores.length)];
+      const caracteristicaAleatoria = caracteristicas[Math.floor(Math.random() * caracteristicas.length)];
+
+      inputNome.value = nomeAleatorio;
+      inputOcupacao.value = ocupacaoAleatoria;
+      inputDescritor.value = descritorAleatorio;
+      inputCaracteristica.value = caracteristicaAleatoria;
+
+      // Definindo o valor base de Combate, Habilidade, Noção e Vitalidade
+      let valorBaseCombate = 2;
+      let valorBaseHabilidade = 2;
+      let valorBaseNocao = 2;
+      let valorBaseVitalidade = 2;
+
+      // Adicionando +1 ao Combate se a ocupação for "Mercenário" ou "Caçador"
+      if (ocupacaoAleatoria === "Mercenário" || ocupacaoAleatoria === "Caçador") {
+        valorBaseCombate += 1;
+      }
+
+      // Adicionando +1 à Habilidade se a ocupação for "Gatuno"
+      if (ocupacaoAleatoria === "Gatuno") {
+        valorBaseHabilidade += 1;
+      }
+
+      // Adicionando +1 à Vitalidade se a ocupação for "Líder" ou "Incendiário"
+      if (ocupacaoAleatoria === "Líder" || ocupacaoAleatoria === "Incendiário") {
+        valorBaseVitalidade += 1;
+      }
+
+      // Diminuindo 1 do Combate se o descritor for "Covarde"
+      if (descritorAleatorio === "Covarde") {
+        valorBaseCombate -= 1;
+      }
+
+      // Aplicando a penalidade ao descritor "Atrapalhado" na Habilidade
+      if (descritorAleatorio === "Atrapalhado") {
+        valorBaseHabilidade -= 1;
+      }
+
+      // Adicionando +1 à Noção se a ocupação for "Bruxo"
+      if (ocupacaoAleatoria === "Bruxo") {
+        valorBaseNocao += 1;
+      }
+
+      // Aplicando a penalidade à Noção se o descritor for "Tapado"
+      if (descritorAleatorio === "Tapado") {
+        valorBaseNocao -= 1;
+      }
+
+      // Aplicando bônus/penalidade à Vitalidade com base na ocupação e descritor
+      if (descritorAleatorio === "Fracote") {
+        valorBaseVitalidade -= 1;
+      }
+
+      inputCombate.value = valorBaseCombate;
+      inputHabilidade.value = valorBaseHabilidade;
+      inputNocao.value = valorBaseNocao;
+      inputVitalidade.value = valorBaseVitalidade;
+
+      inputNivel.value = '';
+      inputFerimentos.value = '';
+      document.getElementById('equipamentos').value = '';
+    }
+  </script>
+
+</body>
+</html>
