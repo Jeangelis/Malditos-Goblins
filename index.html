@@ -29,16 +29,16 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
+      margin: 0px 0;
     }
 
     table, th, td {
-      border: 1px solid #ddd;
+      border: 0px solid #ffffff;
     }
 
     th, td {
       padding: 8px;
-      text-align: left;
+      text-align: center;
     }
 
     th {
@@ -48,13 +48,13 @@
 
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 0px;
     }
 
     input, select, textarea {
       width: 100%;
       padding: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 0px;
       box-sizing: border-box;
     }
 
@@ -75,10 +75,16 @@
       background-color: #361109;
     }
 
+    h2, h3 {
+      margin-top: 10px;    /* Ajuste a margem superior conforme necessário */
+      margin-bottom: 10px; /* Ajuste a margem inferior conforme necessário */
+      color: #333; /* Mantive a definição de cor que você já tinha no seu código */
+    }
+
     /* Adicionando media query para dispositivos com largura menor que 600 pixels */
     @media (max-width: 600px) {
       form {
-        width: 100%; /* Tornando a ficha 100% de largura para dispositivos móveis */
+        width: 80%; /* Tornando a ficha 100% de largura para dispositivos móveis */
       }
     }
   </style>
@@ -86,6 +92,9 @@
 <body>
 
   <form>
+
+    
+
     <h2>Ficha de Personagem</h2>
 
     <table>
@@ -131,6 +140,28 @@
         <td><input type="number" id="ferimentos" name="ferimentos" min="0" required></td>
       </tr>
     </table>
+
+    <h3>Bônus</h3>
+    
+    <!-- Adicionando a tabela de bônus -->
+    <table id="bonusTable">
+      <tr>
+        <th>Combate</th>
+        <th>Habilidade</th>
+        <th>Noção</th>
+        <th>Vitalidade</th>
+      </tr>
+      <tr>
+        <td><input type="number" id="bonusCombate" name="bonusCombate" value="0"></td>
+        <td><input type="number" id="bonusHabilidade" name="bonusHabilidade" value="0"></td>
+        <td><input type="number" id="bonusNocao" name="bonusNocao" value="0"></td>
+        <td><input type="number" id="bonusVitalidade" name="bonusVitalidade" value="0"></td>
+      </tr>
+    </table>
+  
+    <!-- Adicionando o botão para acionar a função aplicarBonus() -->
+    <button type="button" onclick="aplicarBonus()">Aplicar Bônus</button>
+  
 
     <label for="equipamentos"><h3>Equipamentos</h3></label>
     <textarea id="equipamentos" name="equipamentos" rows="4" required></textarea>
@@ -229,6 +260,26 @@
       inputFerimentos.value = '';
       document.getElementById('equipamentos').value = '';
     }
+
+
+    function aplicarBonus() {
+      const bonusCombate = parseInt(document.getElementById('bonusCombate').value) || 0;
+      const bonusHabilidade = parseInt(document.getElementById('bonusHabilidade').value) || 0;
+      const bonusNocao = parseInt(document.getElementById('bonusNocao').value) || 0;
+      const bonusVitalidade = parseInt(document.getElementById('bonusVitalidade').value) || 0;
+
+      const inputCombate = document.getElementById('combate');
+      const inputHabilidade = document.getElementById('habilidade');
+      const inputNocao = document.getElementById('nocao');
+      const inputVitalidade = document.getElementById('vitalidade');
+
+      inputCombate.value = parseInt(inputCombate.value) + bonusCombate;
+      inputHabilidade.value = parseInt(inputHabilidade.value) + bonusHabilidade;
+      inputNocao.value = parseInt(inputNocao.value) + bonusNocao;
+      inputVitalidade.value = parseInt(inputVitalidade.value) + bonusVitalidade;
+    }
+
+
   </script>
 
 </body>
