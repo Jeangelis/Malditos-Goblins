@@ -248,19 +248,13 @@
   </form>
 
   <script>
-    // Lista de nomes
     const nomes = ["Plaft", "Glub", "Crash", "Spray", "Bing", "Plin", "Tim", "Zzzz", "Cringe", "Riso", "Tik", "Ranço", "Sussa", "Sopa", "Slash", "Tok", "Yhaa", "Bibi", "Ovo", "Coff", "Bash", "Vrum", "Boom", "Ban", "Ugh", "Cricri", "Aiaiai", "Bum", "Nhack", "Snif", "Última coisa que comeu", "Inverta seu nome"];
-
-    // Lista de ocupações
     const ocupacoes = ["Mercenário", "Caçador", "Gatuno", "Líder", "Incendiário", "Bruxo"];
-
-    // Lista de descritores corretos
     const descritores = ["Covarde", "Atrapalhado", "Tapado", "Fracote", "Medíocre", "Supimpa"];
-
-    // Lista de características corretas
     const caracteristicas = ["Bomba-relógio", "Cinzento", "Amaldiçoado", "Tom bélico", "Flutulência", "Minicabeça", "Cabeção", "Linguão", "Olho gigante", "Pés gigantes", "Mãos gigantes", "Apêndice extra", "Orelha extra", "Nariz extra", "Olhos extra", "Braço extra", "Cabeça extra", "Poros fedidos", "Pintas", "Listras", "Pompom", "Chifre", "Cicatrizes", "Verdura", "Minion", "Galináceo", "Peixoso", "Felino", "Aracnídeo", "Fosforescente", "Colorido", "Amarelo", "Azul", "Vermelho"];
 
-    // Função para escolher aleatoriamente um nome, uma ocupação, um descritor e uma característica e preencher os campos
+    let ocupacaoAleatoria;
+
     function preencherDadosAleatorios() {
       const inputNome = document.getElementById('nome');
       const inputOcupacao = document.getElementById('ocupacao');
@@ -274,7 +268,7 @@
       const inputFerimentos = document.getElementById('ferimentos');
 
       const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
-      const ocupacaoAleatoria = ocupacoes[Math.floor(Math.random() * ocupacoes.length)];
+      ocupacaoAleatoria = ocupacoes[Math.floor(Math.random() * ocupacoes.length)];
       const descritorAleatorio = descritores[Math.floor(Math.random() * descritores.length)];
       const caracteristicaAleatoria = caracteristicas[Math.floor(Math.random() * caracteristicas.length)];
 
@@ -283,48 +277,39 @@
       inputDescritor.value = descritorAleatorio;
       inputCaracteristica.value = caracteristicaAleatoria;
 
-      // Definindo o valor base de Combate, Habilidade, Noção e Vitalidade
       let valorBaseCombate = 2;
       let valorBaseHabilidade = 2;
       let valorBaseNocao = 2;
       let valorBaseVitalidade = 2;
 
-      // Adicionando +1 ao Combate se a ocupação for "Mercenário" ou "Caçador"
       if (ocupacaoAleatoria === "Mercenário" || ocupacaoAleatoria === "Caçador") {
         valorBaseCombate += 1;
       }
 
-      // Adicionando +1 à Habilidade se a ocupação for "Gatuno"
       if (ocupacaoAleatoria === "Gatuno") {
         valorBaseHabilidade += 1;
       }
 
-      // Adicionando +1 à Vitalidade se a ocupação for "Líder" ou "Incendiário"
       if (ocupacaoAleatoria === "Líder" || ocupacaoAleatoria === "Incendiário") {
         valorBaseVitalidade += 1;
       }
 
-      // Diminuindo 1 do Combate se o descritor for "Covarde"
       if (descritorAleatorio === "Covarde") {
         valorBaseCombate -= 1;
       }
 
-      // Aplicando a penalidade ao descritor "Atrapalhado" na Habilidade
       if (descritorAleatorio === "Atrapalhado") {
         valorBaseHabilidade -= 1;
       }
 
-      // Adicionando +1 à Noção se a ocupação for "Bruxo"
       if (ocupacaoAleatoria === "Bruxo") {
         valorBaseNocao += 1;
       }
 
-      // Aplicando a penalidade à Noção se o descritor for "Tapado"
       if (descritorAleatorio === "Tapado") {
         valorBaseNocao -= 1;
       }
 
-      // Aplicando bônus/penalidade à Vitalidade com base na ocupação e descritor
       if (descritorAleatorio === "Fracote") {
         valorBaseVitalidade -= 1;
       }
@@ -338,21 +323,13 @@
       inputFerimentos.value = '';
       document.getElementById('equipamentos').value = '';
 
-
-      // Definindo os campos de Magia para "Nenhum"
       document.getElementById('elementoMagico1').value = 'Nenhuma';
       document.getElementById('elementoMagico2').value = 'Nenhuma';
       document.getElementById('elementoMagico3').value = 'Nenhuma';
 
-
-
-        // Zerando os campos de Bônus
-      document.getElementById('bonusCombate').value = '0';
-      document.getElementById('bonusHabilidade').value = '0';
-      document.getElementById('bonusNocao').value = '0';
-      document.getElementById('bonusVitalidade').value = '0';
+      // Chamando a função para atualizar a visibilidade dos dropdowns de magia
+      atualizarVisibilidadeMagia();
     }
-
 
     function aplicarBonus() {
     const bonusCombate = parseInt(document.getElementById('bonusCombate').value) || 0;
@@ -377,8 +354,23 @@
     document.getElementById('bonusVitalidade').value = 0;
   }
 
+  function atualizarVisibilidadeMagia() {
+      const elementoMagico1 = document.getElementById('elementoMagico1');
+      const elementoMagico2 = document.getElementById('elementoMagico2');
+      const elementoMagico3 = document.getElementById('elementoMagico3');
 
+      const habilitarMagia = ocupacaoAleatoria === 'Bruxo';
+      elementoMagico1.disabled = !habilitarMagia;
+      elementoMagico2.disabled = !habilitarMagia;
+      elementoMagico3.disabled = !habilitarMagia;
+
+      if (!habilitarMagia) {
+        elementoMagico1.value = 'Nenhuma';
+        elementoMagico2.value = 'Nenhuma';
+        elementoMagico3.value = 'Nenhuma';
+      }
+    }
   </script>
-
 </body>
 </html>
+
