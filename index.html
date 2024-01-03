@@ -186,8 +186,55 @@
     <button type="button" onclick="aplicarBonus()">Aplicar Bônus</button>
   
 
-    <label for="equipamentos"><h3>Equipamentos</h3></label>
-    <textarea id="equipamentos" name="equipamentos" rows="3" required></textarea>
+
+    <!-- Adicionando os campos Equipamentos e Magia -->
+    <div style="display: flex; justify-content: space-between;">
+
+      <div style="width: 60%;">
+        <label for="equipamentos"><h3>Equipamentos</h3></label>
+        <textarea id="equipamentos" name="equipamentos" rows="6" required></textarea>
+      </div>
+    
+      <div style="width: 39%;">
+        <label for="magia"><h3>Magia</h3></label>
+    
+        
+          <select id="elementoMagico1" name="elementoMagico1" >
+            <option value="Nenhuma">Nenhuma</option>
+            <option value="Fogo">Fogo</option>
+            <option value="Gelo">Gelo</option>
+            <option value="Relâmpago">Relâmpago</option>
+            <option value="Troca">Troca</option>
+            <option value="Cura">Cura</option>
+            <option value="Morte">Morte</option>
+            <option value="Planta">Planta</option>
+          </select>
+    
+          <select id="elementoMagico2" name="elementoMagico2" >
+            <option value="Nenhuma">Nenhuma</option>
+            <option value="Fogo">Fogo</option>
+            <option value="Gelo">Gelo</option>
+            <option value="Relâmpago">Relâmpago</option>
+            <option value="Troca">Troca</option>
+            <option value="Cura">Cura</option>
+            <option value="Morte">Morte</option>
+            <option value="Planta">Planta</option>
+          </select>
+    
+          <select id="elementoMagico3" name="elementoMagico3" >
+            <option value="Nenhuma">Nenhuma</option>
+            <option value="Fogo">Fogo</option>
+            <option value="Gelo">Gelo</option>
+            <option value="Relâmpago">Relâmpago</option>
+            <option value="Troca">Troca</option>
+            <option value="Cura">Cura</option>
+            <option value="Morte">Morte</option>
+            <option value="Planta">Planta</option>
+          </select>
+        
+      </div>
+    
+    </div>
 
     <button type="button" onclick="preencherDadosAleatorios()">Novo Goblin</button>
   </form>
@@ -282,25 +329,45 @@
       inputNivel.value = '';
       inputFerimentos.value = '';
       document.getElementById('equipamentos').value = '';
+
+
+      // Definindo os campos de Magia para "Nenhum"
+      document.getElementById('elementoMagico1').value = 'Nenhuma';
+      document.getElementById('elementoMagico2').value = 'Nenhuma';
+      document.getElementById('elementoMagico3').value = 'Nenhuma';
+
+
+
+        // Zerando os campos de Bônus
+      document.getElementById('bonusCombate').value = '0';
+      document.getElementById('bonusHabilidade').value = '0';
+      document.getElementById('bonusNocao').value = '0';
+      document.getElementById('bonusVitalidade').value = '0';
     }
 
 
     function aplicarBonus() {
-      const bonusCombate = parseInt(document.getElementById('bonusCombate').value) || 0;
-      const bonusHabilidade = parseInt(document.getElementById('bonusHabilidade').value) || 0;
-      const bonusNocao = parseInt(document.getElementById('bonusNocao').value) || 0;
-      const bonusVitalidade = parseInt(document.getElementById('bonusVitalidade').value) || 0;
+    const bonusCombate = parseInt(document.getElementById('bonusCombate').value) || 0;
+    const bonusHabilidade = parseInt(document.getElementById('bonusHabilidade').value) || 0;
+    const bonusNocao = parseInt(document.getElementById('bonusNocao').value) || 0;
+    const bonusVitalidade = parseInt(document.getElementById('bonusVitalidade').value) || 0;
 
-      const inputCombate = document.getElementById('combate');
-      const inputHabilidade = document.getElementById('habilidade');
-      const inputNocao = document.getElementById('nocao');
-      const inputVitalidade = document.getElementById('vitalidade');
+    const inputCombate = document.getElementById('combate');
+    const inputHabilidade = document.getElementById('habilidade');
+    const inputNocao = document.getElementById('nocao');
+    const inputVitalidade = document.getElementById('vitalidade');
 
-      inputCombate.value = parseInt(inputCombate.value) + bonusCombate;
-      inputHabilidade.value = parseInt(inputHabilidade.value) + bonusHabilidade;
-      inputNocao.value = parseInt(inputNocao.value) + bonusNocao;
-      inputVitalidade.value = parseInt(inputVitalidade.value) + bonusVitalidade;
-    }
+    inputCombate.value = parseInt(inputCombate.value) + bonusCombate;
+    inputHabilidade.value = parseInt(inputHabilidade.value) + bonusHabilidade;
+    inputNocao.value = parseInt(inputNocao.value) + bonusNocao;
+    inputVitalidade.value = parseInt(inputVitalidade.value) + bonusVitalidade;
+
+    // Resetando os valores dos campos de bônus para zero
+    document.getElementById('bonusCombate').value = 0;
+    document.getElementById('bonusHabilidade').value = 0;
+    document.getElementById('bonusNocao').value = 0;
+    document.getElementById('bonusVitalidade').value = 0;
+  }
 
 
   </script>
