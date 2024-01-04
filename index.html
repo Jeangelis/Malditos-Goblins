@@ -6,9 +6,20 @@
   <title>Ficha de Personagem</title>
 
   <style>
+
+    /* Adicionando media query para dispositivos com largura menor que 600 pixels */
+    @media (max-width: 600px) {
+      form {
+        width: 80%; /* Tornando a ficha 100% de largura para dispositivos móveis */
+      }
+    }
+
+
     body {
+      color: #303030;
       font-family: Arial, sans-serif;
-      background: url('bg3.jpg') no-repeat center center fixed;
+      font-weight: bold;
+      background: url('bg.png') no-repeat center center fixed;
       background-size: cover;
       margin: 30;
       padding: 0;
@@ -19,35 +30,13 @@
     }
 
     form {
-      background-color: rgba(255, 255, 255, 0.8);
+      font-size:medium;
+      background-color: rgb(255, 255, 255);
       padding: 10px 20px 10px 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       text-align: center;
-      width: 50%; /* Ajuste na largura da ficha para dispositivos móveis */
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0px 0;
-    }
-
-    table, th, td {
-      border: 0px solid #ffffff;
-    }
-
-    td {
-      padding: 5px;
-      text-align: center;
-    }
-
-    th {
-      padding: 8px;
-      text-align: center;
-      background-color: #611706;
-      color: white;
-      font-size: 14px;
+      width: 40%; /* Ajuste na largura da ficha para dispositivos móveis */
     }
 
     label {
@@ -55,18 +44,36 @@
       margin-bottom: 0px;
     }
 
-    input, select{
+    input{
+      font-size:larger;
+      text-align: center;
       width: 100%;
       padding: 8px;
       margin-bottom: 0px;
       box-sizing: border-box;
+      border-radius: 5px;
+      border-color: #E1E3EA;
+    }
+
+    select{
+      font-size:larger;
+      text-align: center;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 1px;
+      margin-top: 1px;
+      box-sizing: border-box;
+      border-radius: 10px;
     }
 
     textarea {
+      font-size:larger;
       width: 100%;
       padding: 8px;
       margin-bottom: 5px;
       box-sizing: border-box;
+      resize: none;
+      border-radius: 10px;
     }
 
     #equipamentos {
@@ -74,303 +81,348 @@
     }
 
     button {
-      background-color: #115f1a;
-      color: #fff;
+      background-color: #ffffff;
+      font-size:large;
+      font-weight: bold;
+      color: #1e1e1e;
       padding: 10px 15px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      margin-left: -2px;
+      margin-right: -2px;
+      padding: 10px;
     }
 
     button:hover {
-      background-color: #0a2f0e;
+      background-color: #ffffff;
     }
 
-    h2 {
-      margin-top: 0px;    /* Ajuste a margem superior conforme necessário */
-      margin-bottom: 5px; /* Ajuste a margem inferior conforme necessário */
-      color: #333; /* Mantive a definição de cor que você já tinha no seu código */
-      font-size: 18px;
+
+    .info-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      margin-top: 10px;
     }
 
-    
-    h3 {
-      margin-top: 5px;    /* Ajuste a margem superior conforme necessário */
-      margin-bottom: 5px; /* Ajuste a margem inferior conforme necessário */
-      color: #333; /* Mantive a definição de cor que você já tinha no seu código */
-      font-size: 16px;
+    .info-item {
+      width: 48%; /* Ajuste conforme necessário */
     }
 
-    h4 {
-      margin-top: 0px;    /* Ajuste a margem superior conforme necessário */
-      margin-bottom: 2px; /* Ajuste a margem inferior conforme necessário */
-      color: #333; /* Mantive a definição de cor que você já tinha no seu código */
-      font-size: 14px;
+    .info-label {
+      display: block;
+      margin-bottom: 5px;
     }
 
-    /* Adicionando media query para dispositivos com largura menor que 600 pixels */
-    @media (max-width: 600px) {
-      form {
-        width: 80%; /* Tornando a ficha 100% de largura para dispositivos móveis */
-      }
+    .info-input {
+      width: calc(100% - 16px); /* Ajuste conforme necessário */
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .atributo-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .atributo-item {
+      width: 23%; /* Ajuste conforme necessário */
+    }
+
+    .atributo-label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .atributo-input {
+      width: calc(100% - 32px); /* Ajuste conforme necessário */
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .atributo-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
+    .nivel-ferimentos-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
     }
   </style>
 </head>
-<body>
 
-  <form>
+<body style="display:flex; flex-direction: column;">
 
+    <form>
+      
+        <div class="info-container">
+            <div style="width: 70%; background-color: #C5D755; border-radius: 10px; padding: 10px;">
+                <label for="nome" class="info-label">Nome</label>
+                <input type="text" style="border: none;" id="nome" name="nome" required class="info-input">
+            </div>
+
+            <div style="width: 20%; background-color: #C5D755; border-radius: 10px; padding: 10px;">
+                <label for="nivel" class="atributo-label">Nível</label>
+                <div style="display: flex;">
+                    <button type="button" onclick="ajustarAtributo('nivel', 'adicao')">+</button>
+                    <input type="number" style="border: none; border-radius: 0px;" id="nivel" name="nivel" value="1" max="4" readonly class="atributo-input">
+                    <button type="button" onclick="ajustarAtributo('nivel', 'subtracao')">-</button>
+                </div>
+            </div>
     
 
-    <h2>Ficha de Personagem</h2>
-    <h4>Malditos Goblins 3 Ed.</h4>
-    <table>
-      <tr>
-        <th>Nome</th>
-        <th>Ocupação</th>
-      </tr>
-      <tr>
-        <td><input type="text" id="nome" name="nome" readonly></td>
-        <td><input type="text" id="ocupacao" name="ocupacao" readonly></td>
-      </tr>
-      <tr>
-        <th>Descritor</th>
-        <th>Característica</th>
-      </tr>
-      <tr>
-        <td><input type="text" id="descritor" name="descritor" readonly></td>
-        <td><input type="text" id="caracteristica" name="caracteristica" readonly></td>
-      </tr>
-    </table>
-
-    <h3>Atributos</h3>
-
-    <table>
-      <tr>
-        <th>Combate</th>
-        <th>Habilidade</th>
-        <th>Noção</th>
-        <th>Vitalidade</th>
-      </tr>
-      <tr>
-        <td><input type="text" id="combate" name="combate" value="2" readonly></td>
-        <td><input type="text" id="habilidade" name="habilidade" value="2" readonly></td>
-        <td><input type="text" id="nocao" name="nocao" value="2" readonly></td>
-        <td><input type="text" id="vitalidade" name="vitalidade" value="2" readonly></td>
-      </tr>
-    </table>
-
-    <table style="width: 100%;">
-        <tr>
-          <th style="width: 50%;">Nível</th>
-          <th style="width: 50%;">Ferimentos</th>
-        </tr>
-        <tr>
-      <tr>
-        <td><input type="number" id="nivel" name="nivel" min="1" max="4" required></td>
-        <td><input type="number" id="ferimentos" name="ferimentos" min="0" required></td>
-      </tr>
-    </table>
-
-    <h3>Bônus</h3>
-    
-    <!-- Adicionando a tabela de bônus -->
-    <table id="bonusTable">
-      <tr>
-        <th>Combate</th>
-        <th>Habilidade</th>
-        <th>Noção</th>
-        <th>Vitalidade</th>
-      </tr>
-      <tr>
-        <td><input type="number" id="bonusCombate" name="bonusCombate" value="0"></td>
-        <td><input type="number" id="bonusHabilidade" name="bonusHabilidade" value="0"></td>
-        <td><input type="number" id="bonusNocao" name="bonusNocao" value="0"></td>
-        <td><input type="number" id="bonusVitalidade" name="bonusVitalidade" value="0"></td>
-      </tr>
-    </table>
+        </div>
   
-    <!-- Adicionando o botão para acionar a função aplicarBonus() -->
-    <button type="button" onclick="aplicarBonus()">Aplicar Bônus</button>
+            <div style="display: flex; background-color: #C5D755; border-radius: 10px;">
+                <div style="padding: 10px;">
+                    <label for="combate" class="atributo-label">Combate</label>
+                    <div class="atributo-container">
+                    <button type="button" onclick="ajustarAtributo('combate', 'adicao')" class="atributo-btn">+</button>
+                    <input type="text" style="border: none; border-radius: 0px;" id="combate" name="combate" value="2" readonly class="atributo-input">
+                    <button type="button" onclick="ajustarAtributo('combate', 'subtracao')" class="atributo-btn">-</button>
+                    </div>
+                </div>
+                
+                <div style="padding: 10px;">
+                    <label for="habilidade" class="atributo-label">Habilidade</label>
+                    <div class="atributo-container">
+                    <button type="button" onclick="ajustarAtributo('habilidade', 'adicao')" class="atributo-btn">+</button>
+                    <input type="text" style="border: none; border-radius: 0px;" id="habilidade" name="habilidade" value="2" readonly class="atributo-input">
+                    <button type="button" onclick="ajustarAtributo('habilidade', 'subtracao')" class="atributo-btn">-</button>
+                    </div>
+                </div>
+            
+                <div style="padding: 10px;">
+                    <label for="nocao" class="atributo-label">Noção</label>
+                    <div class="atributo-container">
+                    <button type="button" onclick="ajustarAtributo('nocao', 'adicao')" class="atributo-btn">+</button>
+                    <input type="text" style="border: none; border-radius: 0px;"  id="nocao" name="nocao" value="2" readonly class="atributo-input">
+                    <button type="button" onclick="ajustarAtributo('nocao', 'subtracao')" class="atributo-btn">-</button>
+                    </div>
+                </div>
+            
+                <div style="padding: 10px;">
+                    <label for="vitalidade" class="atributo-label">Vitalidade</label>
+                    <div class="atributo-container">
+                    <button type="button" onclick="ajustarAtributo('vitalidade', 'adicao')" class="atributo-btn">+</button>
+                    <input type="text" style="border: none; border-radius: 0px;" id="vitalidade" name="vitalidade" value="2" readonly class="atributo-input">
+                    <button type="button" onclick="ajustarAtributo('vitalidade', 'subtracao')" class="atributo-btn">-</button>
+                    </div>
+                </div>
+
+                <div style="padding: 10px;">
+                    <label for="ferimentos" class="atributo-label">Ferimentos</label>
+                    <div class="atributo-buttons">
+                    <button type="button" style="color: #BC2929;" onclick="ajustarAtributo('ferimentos', 'adicao')">+</button>
+                    <input type="number" style="border: none; color: #BC2929; border-radius: 0px; font-weight: bold;" id="ferimentos" name="ferimentos" value="0" readonly class="atributo-input">
+                    <button type="button" style="color: #BC2929;" onclick="ajustarAtributo('ferimentos', 'subtracao')">-</button>
+                    </div>
+                </div>
+            </div>
+
+
+      <div class="info-container">
+        <div class="info-item">
+            <label for="ocupacao" style="text-align: left;" class="info-label">Ocupação:</label>
+            <input type="text" id="ocupacao" name="ocupacao" readonly class="info-input">
+        </div>
+
+        <div class="info-item">
+          <label for="descritor" style="text-align: left;" class="info-label">Descritor:</label>
+          <input type="text" id="descritor" name="descritor" readonly class="info-input">
+        </div>
+  
+        <div class="info-item">
+          <label for="caracteristica" style="text-align: left;" class="info-label">Característica:</label>
+          <input type="text" id="caracteristica" name="caracteristica" readonly class="info-input">
+        </div>
+      </div>
   
 
-
-    <!-- Adicionando os campos Equipamentos e Magia -->
-    <div style="display: flex; justify-content: space-between;">
-
-      <div style="width: 60%;">
-        <label for="equipamentos"><h3>Equipamentos</h3></label>
-        <textarea id="equipamentos" name="equipamentos" rows="6" required></textarea>
+  
+      <!-- Adicionando os campos Equipamentos e Magia -->
+      <div style="display: flex; justify-content: space-between;">
+  
+        <div style="width: 60%;">
+          <label for="equipamentos" class="info-label">Equipamentos</label>
+          <textarea id="equipamentos" name="equipamentos" rows="6" required></textarea>
+        </div>
+      
+        <div style="width: 39%;">
+          <label for="magia" class="info-label">Magia</label>
+      
+          
+            <select id="elementoMagico1" name="elementoMagico1" >
+              <option value="Nenhuma">Nenhuma</option>
+              <option value="Fogo">Fogo</option>
+              <option value="Gelo">Gelo</option>
+              <option value="Relâmpago">Relâmpago</option>
+              <option value="Troca">Troca</option>
+              <option value="Cura">Cura</option>
+              <option value="Morte">Morte</option>
+              <option value="Planta">Planta</option>
+            </select>
+      
+            <select id="elementoMagico2" name="elementoMagico2" >
+              <option value="Nenhuma">Nenhuma</option>
+              <option value="Fogo">Fogo</option>
+              <option value="Gelo">Gelo</option>
+              <option value="Relâmpago">Relâmpago</option>
+              <option value="Troca">Troca</option>
+              <option value="Cura">Cura</option>
+              <option value="Morte">Morte</option>
+              <option value="Planta">Planta</option>
+            </select>
+      
+            <select id="elementoMagico3" name="elementoMagico3" >
+              <option value="Nenhuma">Nenhuma</option>
+              <option value="Fogo">Fogo</option>
+              <option value="Gelo">Gelo</option>
+              <option value="Relâmpago">Relâmpago</option>
+              <option value="Troca">Troca</option>
+              <option value="Cura">Cura</option>
+              <option value="Morte">Morte</option>
+              <option value="Planta">Planta</option>
+            </select>
+          
+        </div>
+      
       </div>
+  
+      
+    </form>
+    <br>
+    <button type="button" style="background-color: #C5D755;" onclick="preencherDadosAleatorios()">Novo Goblin</button>
+
+    <script>
+        const nomes = ["Plaft", "Glub", "Crash", "Spray", "Bing", "Plin", "Tim", "Zzzz", "Cringe", "Riso", "Tik", "Ranço", "Sussa", "Sopa", "Slash", "Tok", "Yhaa", "Bibi", "Ovo", "Coff", "Bash", "Vrum", "Boom", "Ban", "Ugh", "Cricri", "Aiaiai", "Bum", "Nhack", "Snif", "Última coisa que comeu", "Inverta seu nome"];
+        const ocupacoes = ["Mercenário", "Caçador", "Gatuno", "Líder", "Incendiário", "Bruxo"];
+        const descritores = ["Covarde", "Atrapalhado", "Tapado", "Fracote", "Medíocre", "Supimpa"];
+        const caracteristicas = ["Bomba-relógio", "Cinzento", "Amaldiçoado", "Tom bélico", "Flutulência", "Minicabeça", "Cabeção", "Linguão", "Olho gigante", "Pés gigantes", "Mãos gigantes", "Apêndice extra", "Orelha extra", "Nariz extra", "Olhos extra", "Braço extra", "Cabeça extra", "Poros fedidos", "Pintas", "Listras", "Pompom", "Chifre", "Cicatrizes", "Verdura", "Minion", "Galináceo", "Peixoso", "Felino", "Aracnídeo", "Fosforescente", "Colorido", "Amarelo", "Azul", "Vermelho"];
     
-      <div style="width: 39%;">
-        <label for="magia"><h3>Magia</h3></label>
+        let ocupacaoAleatoria;
     
-        
-          <select id="elementoMagico1" name="elementoMagico1" >
-            <option value="Nenhuma">Nenhuma</option>
-            <option value="Fogo">Fogo</option>
-            <option value="Gelo">Gelo</option>
-            <option value="Relâmpago">Relâmpago</option>
-            <option value="Troca">Troca</option>
-            <option value="Cura">Cura</option>
-            <option value="Morte">Morte</option>
-            <option value="Planta">Planta</option>
-          </select>
+        function preencherDadosAleatorios() {
+          const inputNome = document.getElementById('nome');
+          const inputOcupacao = document.getElementById('ocupacao');
+          const inputDescritor = document.getElementById('descritor');
+          const inputCaracteristica = document.getElementById('caracteristica');
+          const inputCombate = document.getElementById('combate');
+          const inputHabilidade = document.getElementById('habilidade');
+          const inputNocao = document.getElementById('nocao');
+          const inputVitalidade = document.getElementById('vitalidade');
+          const inputNivel = document.getElementById('nivel');
+          const inputFerimentos = document.getElementById('ferimentos');
     
-          <select id="elementoMagico2" name="elementoMagico2" >
-            <option value="Nenhuma">Nenhuma</option>
-            <option value="Fogo">Fogo</option>
-            <option value="Gelo">Gelo</option>
-            <option value="Relâmpago">Relâmpago</option>
-            <option value="Troca">Troca</option>
-            <option value="Cura">Cura</option>
-            <option value="Morte">Morte</option>
-            <option value="Planta">Planta</option>
-          </select>
+          const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
+          ocupacaoAleatoria = ocupacoes[Math.floor(Math.random() * ocupacoes.length)];
+          const descritorAleatorio = descritores[Math.floor(Math.random() * descritores.length)];
+          const caracteristicaAleatoria = caracteristicas[Math.floor(Math.random() * caracteristicas.length)];
     
-          <select id="elementoMagico3" name="elementoMagico3" >
-            <option value="Nenhuma">Nenhuma</option>
-            <option value="Fogo">Fogo</option>
-            <option value="Gelo">Gelo</option>
-            <option value="Relâmpago">Relâmpago</option>
-            <option value="Troca">Troca</option>
-            <option value="Cura">Cura</option>
-            <option value="Morte">Morte</option>
-            <option value="Planta">Planta</option>
-          </select>
-        
-      </div>
+          inputNome.value = nomeAleatorio;
+          inputOcupacao.value = ocupacaoAleatoria;
+          inputDescritor.value = descritorAleatorio;
+          inputCaracteristica.value = caracteristicaAleatoria;
     
-    </div>
+          let valorBaseCombate = 2;
+          let valorBaseHabilidade = 2;
+          let valorBaseNocao = 2;
+          let valorBaseVitalidade = 2;
+    
+          if (ocupacaoAleatoria === "Mercenário" || ocupacaoAleatoria === "Caçador") {
+            valorBaseCombate += 1;
+          }
+    
+          if (ocupacaoAleatoria === "Gatuno") {
+            valorBaseHabilidade += 1;
+          }
+    
+          if (ocupacaoAleatoria === "Líder" || ocupacaoAleatoria === "Incendiário") {
+            valorBaseVitalidade += 1;
+          }
+    
+          if (descritorAleatorio === "Covarde") {
+            valorBaseCombate -= 1;
+          }
+    
+          if (descritorAleatorio === "Atrapalhado") {
+            valorBaseHabilidade -= 1;
+          }
+    
+          if (ocupacaoAleatoria === "Bruxo") {
+            valorBaseNocao += 1;
+          }
+    
+          if (descritorAleatorio === "Tapado") {
+            valorBaseNocao -= 1;
+          }
+    
+          if (descritorAleatorio === "Fracote") {
+            valorBaseVitalidade -= 1;
+          }
+    
+          inputCombate.value = valorBaseCombate;
+          inputHabilidade.value = valorBaseHabilidade;
+          inputNocao.value = valorBaseNocao;
+          inputVitalidade.value = valorBaseVitalidade;
+    
+          inputNivel.value = '';
+          inputFerimentos.value = '';
+          document.getElementById('equipamentos').value = '';
+    
+          document.getElementById('elementoMagico1').value = 'Nenhuma';
+          document.getElementById('elementoMagico2').value = 'Nenhuma';
+          document.getElementById('elementoMagico3').value = 'Nenhuma';
+    
+          // Chamando a função para atualizar a visibilidade dos dropdowns de magia
+          atualizarVisibilidadeMagia();
+        }
+    
+        function ajustarAtributo(idCampo, operacao) {
+            const campo = document.getElementById(idCampo);
+            const valorAtual = parseInt(campo.value) || 0;
 
-    <button type="button" onclick="preencherDadosAleatorios()">Novo Goblin</button>
-  </form>
+            if (idCampo === 'nivel') {
+                // Se for o campo 'nivel', limita a adição até 4
+                if (operacao === 'adicao' && valorAtual < 4) {
+                campo.value = valorAtual + 1;
+                }
+            } else {
+                // Para os outros campos, permite adição sem limitação
+                if (operacao === 'adicao') {
+                campo.value = valorAtual + 1;
+                }
+            }
 
-  <script>
-    const nomes = ["Plaft", "Glub", "Crash", "Spray", "Bing", "Plin", "Tim", "Zzzz", "Cringe", "Riso", "Tik", "Ranço", "Sussa", "Sopa", "Slash", "Tok", "Yhaa", "Bibi", "Ovo", "Coff", "Bash", "Vrum", "Boom", "Ban", "Ugh", "Cricri", "Aiaiai", "Bum", "Nhack", "Snif", "Última coisa que comeu", "Inverta seu nome"];
-    const ocupacoes = ["Mercenário", "Caçador", "Gatuno", "Líder", "Incendiário", "Bruxo"];
-    const descritores = ["Covarde", "Atrapalhado", "Tapado", "Fracote", "Medíocre", "Supimpa"];
-    const caracteristicas = ["Bomba-relógio", "Cinzento", "Amaldiçoado", "Tom bélico", "Flutulência", "Minicabeça", "Cabeção", "Linguão", "Olho gigante", "Pés gigantes", "Mãos gigantes", "Apêndice extra", "Orelha extra", "Nariz extra", "Olhos extra", "Braço extra", "Cabeça extra", "Poros fedidos", "Pintas", "Listras", "Pompom", "Chifre", "Cicatrizes", "Verdura", "Minion", "Galináceo", "Peixoso", "Felino", "Aracnídeo", "Fosforescente", "Colorido", "Amarelo", "Azul", "Vermelho"];
+            // Para todos os campos, permite subtração até 0
+            if (operacao === 'subtracao') {
+                campo.value = valorAtual - 1 >= 0 ? valorAtual - 1 : 0;
+            }
+        }
+    
+    
+      function atualizarVisibilidadeMagia() {
+          const elementoMagico1 = document.getElementById('elementoMagico1');
+          const elementoMagico2 = document.getElementById('elementoMagico2');
+          const elementoMagico3 = document.getElementById('elementoMagico3');
+    
+          const habilitarMagia = ocupacaoAleatoria === 'Bruxo';
+          elementoMagico1.disabled = !habilitarMagia;
+          elementoMagico2.disabled = !habilitarMagia;
+          elementoMagico3.disabled = !habilitarMagia;
+    
+          if (!habilitarMagia) {
+            elementoMagico1.value = 'Nenhuma';
+            elementoMagico2.value = 'Nenhuma';
+            elementoMagico3.value = 'Nenhuma';
+          }
+        }
+      </script>
 
-    let ocupacaoAleatoria;
-
-    function preencherDadosAleatorios() {
-      const inputNome = document.getElementById('nome');
-      const inputOcupacao = document.getElementById('ocupacao');
-      const inputDescritor = document.getElementById('descritor');
-      const inputCaracteristica = document.getElementById('caracteristica');
-      const inputCombate = document.getElementById('combate');
-      const inputHabilidade = document.getElementById('habilidade');
-      const inputNocao = document.getElementById('nocao');
-      const inputVitalidade = document.getElementById('vitalidade');
-      const inputNivel = document.getElementById('nivel');
-      const inputFerimentos = document.getElementById('ferimentos');
-
-      const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
-      ocupacaoAleatoria = ocupacoes[Math.floor(Math.random() * ocupacoes.length)];
-      const descritorAleatorio = descritores[Math.floor(Math.random() * descritores.length)];
-      const caracteristicaAleatoria = caracteristicas[Math.floor(Math.random() * caracteristicas.length)];
-
-      inputNome.value = nomeAleatorio;
-      inputOcupacao.value = ocupacaoAleatoria;
-      inputDescritor.value = descritorAleatorio;
-      inputCaracteristica.value = caracteristicaAleatoria;
-
-      let valorBaseCombate = 2;
-      let valorBaseHabilidade = 2;
-      let valorBaseNocao = 2;
-      let valorBaseVitalidade = 2;
-
-      if (ocupacaoAleatoria === "Mercenário" || ocupacaoAleatoria === "Caçador") {
-        valorBaseCombate += 1;
-      }
-
-      if (ocupacaoAleatoria === "Gatuno") {
-        valorBaseHabilidade += 1;
-      }
-
-      if (ocupacaoAleatoria === "Líder" || ocupacaoAleatoria === "Incendiário") {
-        valorBaseVitalidade += 1;
-      }
-
-      if (descritorAleatorio === "Covarde") {
-        valorBaseCombate -= 1;
-      }
-
-      if (descritorAleatorio === "Atrapalhado") {
-        valorBaseHabilidade -= 1;
-      }
-
-      if (ocupacaoAleatoria === "Bruxo") {
-        valorBaseNocao += 1;
-      }
-
-      if (descritorAleatorio === "Tapado") {
-        valorBaseNocao -= 1;
-      }
-
-      if (descritorAleatorio === "Fracote") {
-        valorBaseVitalidade -= 1;
-      }
-
-      inputCombate.value = valorBaseCombate;
-      inputHabilidade.value = valorBaseHabilidade;
-      inputNocao.value = valorBaseNocao;
-      inputVitalidade.value = valorBaseVitalidade;
-
-      inputNivel.value = '';
-      inputFerimentos.value = '';
-      document.getElementById('equipamentos').value = '';
-
-      document.getElementById('elementoMagico1').value = 'Nenhuma';
-      document.getElementById('elementoMagico2').value = 'Nenhuma';
-      document.getElementById('elementoMagico3').value = 'Nenhuma';
-
-      // Chamando a função para atualizar a visibilidade dos dropdowns de magia
-      atualizarVisibilidadeMagia();
-    }
-
-    function aplicarBonus() {
-    const bonusCombate = parseInt(document.getElementById('bonusCombate').value) || 0;
-    const bonusHabilidade = parseInt(document.getElementById('bonusHabilidade').value) || 0;
-    const bonusNocao = parseInt(document.getElementById('bonusNocao').value) || 0;
-    const bonusVitalidade = parseInt(document.getElementById('bonusVitalidade').value) || 0;
-
-    const inputCombate = document.getElementById('combate');
-    const inputHabilidade = document.getElementById('habilidade');
-    const inputNocao = document.getElementById('nocao');
-    const inputVitalidade = document.getElementById('vitalidade');
-
-    inputCombate.value = parseInt(inputCombate.value) + bonusCombate;
-    inputHabilidade.value = parseInt(inputHabilidade.value) + bonusHabilidade;
-    inputNocao.value = parseInt(inputNocao.value) + bonusNocao;
-    inputVitalidade.value = parseInt(inputVitalidade.value) + bonusVitalidade;
-
-    // Resetando os valores dos campos de bônus para zero
-    document.getElementById('bonusCombate').value = 0;
-    document.getElementById('bonusHabilidade').value = 0;
-    document.getElementById('bonusNocao').value = 0;
-    document.getElementById('bonusVitalidade').value = 0;
-  }
-
-  function atualizarVisibilidadeMagia() {
-      const elementoMagico1 = document.getElementById('elementoMagico1');
-      const elementoMagico2 = document.getElementById('elementoMagico2');
-      const elementoMagico3 = document.getElementById('elementoMagico3');
-
-      const habilitarMagia = ocupacaoAleatoria === 'Bruxo';
-      elementoMagico1.disabled = !habilitarMagia;
-      elementoMagico2.disabled = !habilitarMagia;
-      elementoMagico3.disabled = !habilitarMagia;
-
-      if (!habilitarMagia) {
-        elementoMagico1.value = 'Nenhuma';
-        elementoMagico2.value = 'Nenhuma';
-        elementoMagico3.value = 'Nenhuma';
-      }
-    }
-  </script>
 </body>
 </html>
-
