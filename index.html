@@ -36,6 +36,7 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       text-align: center;
+      margin-bottom: 20px;
       width: 40%; /* Ajuste na largura da ficha para dispositivos móveis */
     }
 
@@ -170,7 +171,7 @@
                 <label for="nivel" class="atributo-label">Nível</label>
                 <div style="display: flex;">
                     <button type="button" onclick="ajustarAtributo('nivel', 'adicao')">+</button>
-                    <input type="number" style="border: none; border-radius: 0px;" id="nivel" name="nivel" value="1" max="4" readonly class="atributo-input">
+                    <input type="text" style="border: none; border-radius: 0px;" id="nivel" name="nivel" value="1" max="4" readonly class="atributo-input">
                     <button type="button" onclick="ajustarAtributo('nivel', 'subtracao')">-</button>
                 </div>
             </div>
@@ -219,7 +220,7 @@
                     <label for="ferimentos" class="atributo-label">Ferimentos</label>
                     <div class="atributo-buttons">
                     <button type="button" style="color: #BC2929;" onclick="ajustarAtributo('ferimentos', 'adicao')">+</button>
-                    <input type="number" style="border: none; color: #BC2929; border-radius: 0px; font-weight: bold;" id="ferimentos" name="ferimentos" value="0" readonly class="atributo-input">
+                    <input type="text" style="border: none; color: #BC2929; border-radius: 0px; font-weight: bold;" id="ferimentos" name="ferimentos" value="0" readonly class="atributo-input">
                     <button type="button" style="color: #BC2929;" onclick="ajustarAtributo('ferimentos', 'subtracao')">-</button>
                     </div>
                 </div>
